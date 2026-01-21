@@ -15,7 +15,7 @@ export function Navigation() {
           {({ isActive }) => (
             <>
               <Home size={24} strokeWidth={isActive ? 2.5 : 2} />
-              <span className="text-xs font-medium">Pointage</span>
+              <span className="text-xs font-medium">Clock</span>
             </>
           )}
         </NavLink>
@@ -24,7 +24,7 @@ export function Navigation() {
           {({ isActive }) => (
             <>
               <List size={24} strokeWidth={isActive ? 2.5 : 2} />
-              <span className="text-xs font-medium">Historique</span>
+              <span className="text-xs font-medium">History</span>
             </>
           )}
         </NavLink>
@@ -42,7 +42,7 @@ export function Navigation() {
           {({ isActive }) => (
             <>
               <Settings size={24} strokeWidth={isActive ? 2.5 : 2} />
-              <span className="text-xs font-medium">Paramètres</span>
+              <span className="text-xs font-medium">Settings</span>
             </>
           )}
         </NavLink>

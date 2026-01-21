@@ -10,9 +10,9 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'icons/*.png'],
       manifest: {
-        name: 'Pointeuse Digitale',
-        short_name: 'Pointeuse',
-        description: 'Application de suivi du temps de présence',
+        name: 'Nanny Hours Tracker',
+        short_name: 'Nanny Hours',
+        description: 'Track your nanny\'s working hours with ease',
         theme_color: '#10b981',
         background_color: '#0f172a',
         display: 'standalone',

@@ -40,26 +40,26 @@ export function Settings() {
   };
 
   const handleTest = () => {
-    const testMessage = `${formData.userName || 'Test'} - Ceci est un message de test
+    const testMessage = `${formData.userName || 'Test'} - This is a test message
 
-Durée : 4h 30min
-Arrivée : 08:30
-Départ : 13:00
+Duration: 4h 30min
+Clock In: 08:30
+Clock Out: 13:00
 
-Pointeuse Digitale`;
+Nanny Hours Tracker`;
 
     if (formData.sendMethod === 'sms') {
       if (!formData.recipientPhone) {
-        alert('Veuillez configurer un numéro de téléphone');
+        alert('Please configure a phone number');
         return;
       }
       sendSMS(formData.recipientPhone, testMessage);
     } else {
       if (!formData.recipientEmail) {
-        alert('Veuillez configurer une adresse email');
+        alert('Please configure an email address');
         return;
       }
-      sendEmail(formData.recipientEmail, 'Test - Pointeuse Digitale', testMessage);
+      sendEmail(formData.recipientEmail, 'Test - Nanny Hours Tracker', testMessage);
     }
   };
 
@@ -69,25 +69,25 @@ Pointeuse Digitale`;
         {/* Header */}
         <div className="flex items-center gap-3 mb-2">
           <SettingsIcon className="text-primary w-8 h-8" />
-          <h1 className="text-2xl font-bold text-white">Paramètres</h1>
+          <h1 className="text-2xl font-bold text-white">Settings</h1>
         </div>
 
         {/* User Info Card */}
         <div className="bg-navy/80 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50 shadow-lg">
           <h2 className="text-base font-semibold text-white mb-4 flex items-center gap-2">
             <User size={18} className="text-primary" />
-            Informations personnelles
+            Personal Information
           </h2>
 
           <div>
             <label className="block text-sm font-medium text-slate-300 mb-2">
-              Votre nom
+              Your Name
             </label>
             <input
               type="text"
               value={formData.userName}
               onChange={(e) => handleChange('userName', e.target.value)}
-              placeholder="Ex: Jean Dupont"
+              placeholder="e.g. Mary Johnson"
               className="w-full px-4 py-3 bg-slate-900/80 border border-slate-600 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
             />
           </div>
@@ -96,14 +96,14 @@ Pointeuse Digitale`;
         {/* Message Settings Card */}
         <div className="bg-navy/80 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50 shadow-lg">
           <h2 className="text-base font-semibold text-white mb-4">
-            Configuration des messages
+            Message Configuration
           </h2>
 
           <div className="space-y-5">
             {/* Send Method Toggle */}
             <div>
               <label className="block text-sm font-medium text-slate-300 mb-3">
-                Méthode d'envoi
+                Send Method
               </label>
               <div className="grid grid-cols-2 gap-3">
                 <button
@@ -134,17 +134,17 @@ Pointeuse Digitale`;
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2 flex items-center gap-2">
                   <Phone size={16} className="text-primary" />
-                  Numéro destinataire
+                  Recipient Phone Number
                 </label>
                 <input
                   type="tel"
                   value={formData.recipientPhone}
                   onChange={(e) => handleChange('recipientPhone', e.target.value)}
-                  placeholder="Ex: +33612345678"
+                  placeholder="e.g. +1234567890"
                   className="w-full px-4 py-3 bg-slate-900/80 border border-slate-600 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
                 />
                 <p className="text-xs text-slate-400 mt-2">
-                  Format international recommandé (ex: +33...)
+                  International format recommended (e.g. +1...)
                 </p>
               </div>
             )}
@@ -154,13 +154,13 @@ Pointeuse Digitale`;
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2 flex items-center gap-2">
                   <Mail size={16} className="text-primary" />
-                  Email destinataire
+                  Recipient Email
                 </label>
                 <input
                   type="email"
                   value={formData.recipientEmail}
                   onChange={(e) => handleChange('recipientEmail', e.target.value)}
-                  placeholder="Ex: contact@example.com"
+                  placeholder="e.g. contact@example.com"
                   className="w-full px-4 py-3 bg-slate-900/80 border border-slate-600 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
                 />
               </div>
@@ -179,7 +179,7 @@ Pointeuse Digitale`;
             }`}
           >
             <Save size={20} />
-            {saved ? 'Sauvegardé !' : 'Sauvegarder'}
+            {saved ? 'Saved!' : 'Save'}
           </button>
 
           <button
@@ -194,8 +194,8 @@ Pointeuse Digitale`;
         {/* Info */}
         <div className="bg-navy/50 backdrop-blur-sm rounded-xl p-4 border border-slate-700/50">
           <p className="text-sm text-slate-400 leading-relaxed">
-            💡 Les messages seront envoyés automatiquement lorsque vous pointez votre sortie.
-            Utilisez le bouton "Test" pour vérifier la configuration.
+            Messages will be sent automatically when you clock out.
+            Use the "Test" button to verify your configuration.
           </p>
         </div>
       </div>

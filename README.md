@@ -1,226 +1,226 @@
-# Pointeuse Digitale - PWA
+# Nanny Hours Tracker - PWA
 
-Application Web Progressive (PWA) de suivi du temps de présence avec génération automatique de rapports.
+A Progressive Web App (PWA) for tracking your nanny's working hours with automatic report generation.
 
-![Stack](https://img.shields.io/badge/React-18-blue)
+![Stack](https://img.shields.io/badge/React-19-blue)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind-3-blue)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-blue)
 ![PWA](https://img.shields.io/badge/PWA-Ready-green)
 
-## Fonctionnalités
+## Features
 
-- **Pointage entrée/sortie** : Bouton central pour pointer son arrivée et son départ
-- **Chronomètre en temps réel** : Affichage du temps écoulé pendant la session
-- **Historique des sessions** : Liste complète de toutes les sessions avec possibilité de suppression
-- **Statistiques** : Vues hebdomadaires et mensuelles avec graphiques de progression
-- **Envoi automatique de messages** : SMS ou Email envoyés automatiquement à la fin de chaque session
-- **Mode hors ligne** : Fonctionne sans connexion internet grâce à IndexedDB
-- **Installable sur mobile** : Ajout à l'écran d'accueil pour une expérience native
+- **Clock In/Out** : Large, easy-to-use buttons for arrival and departure
+- **Real-time Timer** : Live elapsed time display during active sessions
+- **Session History** : Complete list of all sessions with delete functionality
+- **Statistics** : Weekly and monthly views with progress tracking
+- **Automatic Notifications** : SMS or Email sent automatically at the end of each session
+- **Offline Mode** : Works without internet connection using IndexedDB
+- **Mobile Installable** : Add to home screen for a native app experience
 
-## Stack Technique
+## Tech Stack
 
-- **Framework** : React 18 + TypeScript
+- **Framework** : React 19 + TypeScript
 - **Build Tool** : Vite
-- **Styling** : Tailwind CSS
-- **Routing** : React Router DOM v6
-- **Base de données locale** : Dexie.js (wrapper IndexedDB)
+- **Styling** : Tailwind CSS 4
+- **Routing** : React Router DOM v7
+- **Local Database** : Dexie.js (IndexedDB wrapper)
 - **PWA** : vite-plugin-pwa
-- **Icônes** : Lucide React
-- **Hébergement** : GitHub Pages
+- **Icons** : Lucide React
+- **Hosting** : GitHub Pages
 
 ## Installation
 
-### Prérequis
+### Prerequisites
 
 - Node.js 20+
-- npm ou yarn
+- npm or yarn
 
-### Installation locale
+### Local Setup
 
 ```bash
-# Cloner le repository
-git clone https://github.com/votre-username/pointeuse-digitale.git
-cd pointeuse-digitale
+# Clone the repository
+git clone https://github.com/thomaschardenal-ship-it/initial-test.git
+cd initial-test
 
-# Installer les dépendances
+# Install dependencies
 npm install
 
-# Lancer en développement
+# Run in development mode
 npm run dev
 ```
 
-L'application sera accessible sur `http://localhost:5173`
+The app will be accessible at `http://localhost:5173`
 
-## Déploiement sur GitHub Pages
+## Deploying to GitHub Pages
 
-### Configuration initiale
+### Initial Configuration
 
-1. **Créer un repository GitHub** nommé `pointeuse-digitale` (ou autre nom)
+1. **Create a GitHub repository** named `initial-test` (or your preferred name)
 
-2. **Mettre à jour le base path** dans `vite.config.ts` :
+2. **Update the base path** in `vite.config.ts`:
    ```typescript
    export default defineConfig({
-     base: '/nom-de-votre-repo/',
+     base: '/your-repo-name/',
      // ...
    })
    ```
 
-3. **Pousser le code sur GitHub** :
+3. **Push code to GitHub**:
    ```bash
-   git remote add origin https://github.com/votre-username/pointeuse-digitale.git
+   git remote add origin https://github.com/your-username/your-repo-name.git
    git push -u origin main
    ```
 
-4. **Activer GitHub Pages** :
-   - Aller dans Settings > Pages
-   - Source : Sélectionner "GitHub Actions"
+4. **Enable GitHub Pages**:
+   - Go to Settings > Pages
+   - Source: Select "GitHub Actions"
 
-5. **Déploiement automatique** :
-   - Le workflow GitHub Actions (`.github/workflows/deploy.yml`) se déclenche automatiquement à chaque push sur `main`
-   - L'app sera disponible sur : `https://votre-username.github.io/pointeuse-digitale/`
+5. **Automatic Deployment**:
+   - The GitHub Actions workflow (`.github/workflows/jekyll-gh-pages.yml`) triggers automatically on every push to `main`
+   - The app will be available at: `https://your-username.github.io/your-repo-name/`
 
-### Build manuel
+### Manual Build
 
 ```bash
-# Créer le build de production
+# Create production build
 npm run build
 
-# Prévisualiser le build
+# Preview the build
 npm run preview
 ```
 
-## Installation sur iPhone/iPad
+## Installing on iPhone/iPad
 
-1. Ouvrir l'URL de l'application dans **Safari** (navigateur par défaut)
-2. Appuyer sur le bouton **Partager** (carré avec flèche vers le haut)
-3. Faire défiler et sélectionner **"Sur l'écran d'accueil"**
-4. Confirmer le nom et appuyer sur **"Ajouter"**
+1. Open the app URL in **Safari** (default browser)
+2. Tap the **Share** button (square with arrow pointing up)
+3. Scroll down and select **"Add to Home Screen"**
+4. Confirm the name and tap **"Add"**
 
-L'application apparaît maintenant comme une app native sur l'écran d'accueil !
+The app now appears as a native app on your home screen!
 
-## Installation sur Android
+## Installing on Android
 
-1. Ouvrir l'URL de l'application dans **Chrome**
-2. Appuyer sur le menu (trois points verticaux)
-3. Sélectionner **"Ajouter à l'écran d'accueil"**
-4. Confirmer le nom et appuyer sur **"Ajouter"**
+1. Open the app URL in **Chrome**
+2. Tap the menu (three vertical dots)
+3. Select **"Add to Home screen"**
+4. Confirm the name and tap **"Add"**
 
-## Utilisation
+## Usage
 
-### Premier démarrage
+### First Time Setup
 
-1. Aller dans **Réglages** (icône engrenage en bas)
-2. Renseigner votre nom
-3. Choisir la méthode d'envoi (SMS ou Email)
-4. Renseigner le numéro de téléphone ou l'email du destinataire
-5. Sauvegarder et tester avec le bouton **"Test"**
+1. Go to **Settings** (gear icon at bottom)
+2. Enter your name
+3. Choose send method (SMS or Email)
+4. Enter the recipient's phone number or email address
+5. Save and test with the **"Test"** button
 
-### Pointage quotidien
+### Daily Clock In/Out
 
-1. **Arrivée** : Appuyer sur le bouton vert "Pointer Entrée"
-2. Le chronomètre démarre automatiquement
-3. **Départ** : Appuyer sur le bouton rouge "Pointer Sortie"
-4. Un message est automatiquement envoyé avec les détails de la session
+1. **Clock In**: Tap the green "Clock In" button when arriving
+2. Timer starts automatically
+3. **Clock Out**: Tap the red "Clock Out" button when leaving
+4. A message is automatically sent with session details
 
-### Consulter l'historique
+### View History
 
-- Onglet **Historique** : Liste de toutes les sessions groupées par date
-- Possibilité de supprimer des sessions en appuyant sur l'icône poubelle
+- **History** tab: List of all sessions grouped by date
+- Delete sessions by tapping the trash icon
 
-### Visualiser les statistiques
+### View Statistics
 
-- Onglet **Stats** : Vue hebdomadaire et mensuelle
-- Progression vers l'objectif hebdomadaire de 35h
-- Moyenne journalière et nombre de sessions
+- **Stats** tab: Weekly and monthly views
+- Progress toward 35-hour weekly goal
+- Daily average and session count
 
-## Architecture du projet
+## Project Structure
 
 ```
-pointeuse-digitale/
+nanny-hours-tracker/
 ├── public/
-│   └── icons/                # Icônes PWA (à ajouter)
+│   └── icons/                # PWA icons
 ├── src/
 │   ├── components/
-│   │   ├── Navigation.tsx    # Barre de navigation
-│   │   └── StatCard.tsx      # Carte de statistique
+│   │   ├── Navigation.tsx    # Navigation bar
+│   │   └── StatCard.tsx      # Statistics card
 │   ├── pages/
-│   │   ├── Home.tsx          # Page d'accueil avec pointage
-│   │   ├── History.tsx       # Historique des sessions
-│   │   ├── Statistics.tsx    # Statistiques
+│   │   ├── Home.tsx          # Home page with clock in/out
+│   │   ├── History.tsx       # Session history
+│   │   ├── Statistics.tsx    # Statistics
 │   │   └── Settings.tsx      # Configuration
 │   ├── hooks/
-│   │   └── useSession.ts     # Hook pour gérer les sessions
+│   │   └── useSession.ts     # Hook to manage sessions
 │   ├── services/
-│   │   ├── database.ts       # Service Dexie.js
-│   │   └── messageService.ts # Envoi SMS/Email
+│   │   ├── database.ts       # Dexie.js service
+│   │   └── messageService.ts # SMS/Email sending
 │   ├── types/
-│   │   └── index.ts          # Types TypeScript
+│   │   └── index.ts          # TypeScript types
 │   ├── utils/
-│   │   └── timeUtils.ts      # Fonctions utilitaires
-│   ├── App.tsx               # Composant principal
-│   ├── main.tsx              # Point d'entrée
-│   └── index.css             # Styles globaux
+│   │   └── timeUtils.ts      # Utility functions
+│   ├── App.tsx               # Main component
+│   ├── main.tsx              # Entry point
+│   └── index.css             # Global styles
 ├── .github/
 │   └── workflows/
-│       └── deploy.yml        # Workflow GitHub Actions
-├── vite.config.ts            # Configuration Vite + PWA
-├── tailwind.config.js        # Configuration Tailwind
+│       └── jekyll-gh-pages.yml  # GitHub Actions workflow
+├── vite.config.ts            # Vite + PWA configuration
+├── tailwind.config.js        # Tailwind configuration
 └── package.json
 ```
 
-## Personnalisation
+## Customization
 
-### Icônes PWA
+### PWA Icons
 
-Pour personnaliser les icônes de l'application :
+To customize app icons:
 
-1. Créer deux icônes PNG :
+1. Create two PNG icons:
    - `icon-192x192.png` (192x192 pixels)
    - `icon-512x512.png` (512x512 pixels)
 
-2. Les placer dans `public/icons/`
+2. Place them in `public/icons/`
 
-3. Générer facilement des icônes sur [RealFaviconGenerator](https://realfavicongenerator.net/)
+3. Easily generate icons at [RealFaviconGenerator](https://realfavicongenerator.net/)
 
-### Objectif hebdomadaire
+### Weekly Goal
 
-Modifier l'objectif dans `src/pages/Statistics.tsx` :
+Modify the goal in `src/pages/Statistics.tsx`:
 
 ```typescript
-const weeklyGoal = 35; // Changer ici
+const weeklyGoal = 35; // Change here
 ```
 
-### Couleurs
+### Colors
 
-Modifier les couleurs dans `tailwind.config.js` :
+Modify colors in `tailwind.config.js`:
 
 ```javascript
 colors: {
-  primary: '#10b981', // Vert émeraude
-  danger: '#ef4444',  // Rouge
+  primary: '#10b981', // Emerald green
+  danger: '#ef4444',  // Red
 }
 ```
 
-## Données et confidentialité
+## Data & Privacy
 
-- **Stockage local uniquement** : Toutes les données sont stockées localement dans votre navigateur via IndexedDB
-- **Aucun serveur** : Aucune donnée n'est envoyée à un serveur externe
-- **Messages** : Les SMS/Emails sont envoyés via l'application native de votre appareil
+- **Local Storage Only**: All data is stored locally in your browser via IndexedDB
+- **No Server**: No data is sent to external servers
+- **Messages**: SMS/Emails are sent via your device's native app
 
-## Technologies utilisées
+## Technologies Used
 
-- [React](https://react.dev/) - Framework UI
-- [TypeScript](https://www.typescriptlang.org/) - Typage statique
-- [Vite](https://vitejs.dev/) - Build tool rapide
-- [Tailwind CSS](https://tailwindcss.com/) - Framework CSS utilitaire
-- [Dexie.js](https://dexie.org/) - Wrapper IndexedDB
+- [React](https://react.dev/) - UI Framework
+- [TypeScript](https://www.typescriptlang.org/) - Static typing
+- [Vite](https://vitejs.dev/) - Fast build tool
+- [Tailwind CSS](https://tailwindcss.com/) - Utility CSS framework
+- [Dexie.js](https://dexie.org/) - IndexedDB wrapper
 - [React Router](https://reactrouter.com/) - Routing
-- [Lucide React](https://lucide.dev/) - Icônes
-- [vite-plugin-pwa](https://vite-pwa-org.netlify.app/) - Plugin PWA
+- [Lucide React](https://lucide.dev/) - Icons
+- [vite-plugin-pwa](https://vite-pwa-org.netlify.app/) - PWA plugin
 
-## Contribution
+## Contributing
 
-Les contributions sont les bienvenues ! N'hésitez pas à ouvrir une issue ou une pull request.
+Contributions are welcome! Feel free to open an issue or pull request.
 
 ## License
 
@@ -228,8 +228,8 @@ MIT
 
 ## Support
 
-Pour toute question ou problème, ouvrez une issue sur GitHub.
+For any questions or issues, please open an issue on GitHub.
 
 ---
 
-Développé avec ❤️ par [Votre Nom]
+Built with ❤️ for tracking nanny hours

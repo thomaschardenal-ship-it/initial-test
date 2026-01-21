@@ -46,28 +46,28 @@ export function Statistics() {
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">
           <BarChart3 className="text-primary w-8 h-8" />
-          <h1 className="text-2xl font-bold text-white">Statistiques</h1>
+          <h1 className="text-2xl font-bold text-white">Statistics</h1>
         </div>
 
         {/* Week Stats */}
         <div className="mb-8">
           <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
             <Calendar size={20} className="text-primary" />
-            Cette semaine
+            This Week
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             <StatCard
-              title="Temps total"
+              title="Total Time"
               value={formatDuration(weekMinutes)}
-              subtitle={`${weekSessionCount} session${weekSessionCount > 1 ? 's' : ''}`}
+              subtitle={`${weekSessionCount} session${weekSessionCount !== 1 ? 's' : ''}`}
               icon={Clock}
             />
 
             <StatCard
-              title="Moyenne journalière"
+              title="Daily Average"
               value={formatDuration(avgWeekHours * 60)}
-              subtitle={`${weekDaysWorked} jour${weekDaysWorked > 1 ? 's' : ''} travaillé${weekDaysWorked > 1 ? 's' : ''}`}
+              subtitle={`${weekDaysWorked} day${weekDaysWorked !== 1 ? 's' : ''} worked`}
               icon={TrendingUp}
             />
           </div>
@@ -75,7 +75,7 @@ export function Statistics() {
           {/* Weekly goal progress */}
           <div className="bg-navy/80 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50 shadow-lg">
             <div className="flex items-center justify-between mb-3">
-              <span className="text-sm font-medium text-slate-300">Objectif hebdomadaire</span>
+              <span className="text-sm font-medium text-slate-300">Weekly Goal</span>
               <span className="text-sm font-bold text-white">
                 {weekHours.toFixed(1)}h / {weeklyGoal}h
               </span>
@@ -87,7 +87,7 @@ export function Statistics() {
               />
             </div>
             <p className="text-xs text-slate-400 mt-2">
-              {weekProgress >= 100 ? '🎉 Objectif atteint !' : `${(weeklyGoal - weekHours).toFixed(1)}h restantes`}
+              {weekProgress >= 100 ? 'Goal achieved!' : `${(weeklyGoal - weekHours).toFixed(1)}h remaining`}
             </p>
           </div>
         </div>
@@ -96,22 +96,22 @@ export function Statistics() {
         <div className="mb-8">
           <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
             <Award size={20} className="text-secondary" />
-            Ce mois
+            This Month
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <StatCard
-              title="Temps total"
+              title="Total Time"
               value={formatDuration(monthMinutes)}
-              subtitle={`${monthSessionCount} session${monthSessionCount > 1 ? 's' : ''}`}
+              subtitle={`${monthSessionCount} session${monthSessionCount !== 1 ? 's' : ''}`}
               icon={Clock}
               color="text-secondary"
             />
 
             <StatCard
-              title="Moyenne journalière"
+              title="Daily Average"
               value={formatDuration(avgMonthHours * 60)}
-              subtitle={`${monthDaysWorked} jour${monthDaysWorked > 1 ? 's' : ''} travaillé${monthDaysWorked > 1 ? 's' : ''}`}
+              subtitle={`${monthDaysWorked} day${monthDaysWorked !== 1 ? 's' : ''} worked`}
               icon={TrendingUp}
               color="text-secondary"
             />
@@ -122,7 +122,7 @@ export function Statistics() {
         {weekSessionCount === 0 && (
           <div className="bg-navy/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50 text-center">
             <p className="text-slate-400">
-              Commencez à pointer pour voir vos statistiques
+              Start clocking in to see your statistics
             </p>
           </div>
         )}

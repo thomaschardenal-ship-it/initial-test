@@ -10,15 +10,15 @@ export function History() {
   const handleDelete = async (id: number | undefined) => {
     if (!id) return;
 
-    if (window.confirm('Êtes-vous sûr de vouloir supprimer cette session ?')) {
+    if (window.confirm('Are you sure you want to delete this session?')) {
       await deleteSession(id);
     }
   };
 
   const getDateLabel = (session: Session) => {
     const sessionDate = new Date(session.date);
-    if (isToday(sessionDate)) return "Aujourd'hui";
-    if (isYesterday(sessionDate)) return "Hier";
+    if (isToday(sessionDate)) return "Today";
+    if (isYesterday(sessionDate)) return "Yesterday";
     return formatDate(sessionDate);
   };
 
@@ -42,9 +42,9 @@ export function History() {
     return (
       <div className="flex-1 flex flex-col items-center justify-center p-6 pb-24">
         <Calendar className="w-20 h-20 text-slate-600 mb-4" />
-        <h2 className="text-xl font-bold text-white mb-2">Aucun historique</h2>
+        <h2 className="text-xl font-bold text-white mb-2">No History</h2>
         <p className="text-slate-400 text-center">
-          Vos sessions de travail apparaîtront ici
+          Work sessions will appear here
         </p>
       </div>
     );
@@ -56,7 +56,7 @@ export function History() {
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">
           <HistoryIcon className="text-primary w-8 h-8" />
-          <h1 className="text-2xl font-bold text-white">Historique</h1>
+          <h1 className="text-2xl font-bold text-white">History</h1>
         </div>
 
         <div className="space-y-6">
@@ -79,11 +79,11 @@ export function History() {
                           <Clock className="text-primary" size={20} />
                           <div>
                             <p className="text-white font-medium">
-                              {formatTime(session.arrivalTime)} - {session.departureTime ? formatTime(session.departureTime) : 'En cours'}
+                              {formatTime(session.arrivalTime)} - {session.departureTime ? formatTime(session.departureTime) : 'In Progress'}
                             </p>
                             {session.duration && (
                               <p className="text-sm text-slate-400">
-                                Durée : {formatDuration(session.duration)}
+                                Duration: {formatDuration(session.duration)}
                               </p>
                             )}
                           </div>
@@ -92,7 +92,7 @@ export function History() {
                         {!session.departureTime && (
                           <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/20 text-primary rounded-full text-xs font-medium">
                             <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                            Session en cours
+                            Active Session
                           </div>
                         )}
                       </div>
