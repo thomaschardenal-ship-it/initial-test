@@ -1,5 +1,5 @@
 import { useLiveQuery } from 'dexie-react-hooks';
-import { Trash2, Clock, Calendar } from 'lucide-react';
+import { Trash2, Clock, Calendar, History as HistoryIcon } from 'lucide-react';
 import { getAllSessions, deleteSession } from '../services/database';
 import { formatTime, formatDuration, formatDate, isToday, isYesterday } from '../utils/timeUtils';
 import { Session } from '../types';
@@ -51,15 +51,19 @@ export function History() {
   }
 
   return (
-    <div className="flex-1 overflow-y-auto p-6 pb-24">
+    <div className="flex-1 overflow-y-auto p-6 pb-24 pt-8">
       <div className="max-w-2xl mx-auto">
-        <h1 className="text-3xl font-bold text-white mb-6">Historique</h1>
+        {/* Header */}
+        <div className="flex items-center gap-3 mb-6">
+          <HistoryIcon className="text-primary w-8 h-8" />
+          <h1 className="text-2xl font-bold text-white">Historique</h1>
+        </div>
 
         <div className="space-y-6">
           {dateKeys.map(dateKey => (
             <div key={dateKey}>
-              <h2 className="text-sm font-semibold text-slate-400 mb-3 flex items-center gap-2">
-                <Calendar size={16} />
+              <h2 className="text-sm font-semibold text-slate-300 mb-3 flex items-center gap-2 px-2">
+                <Calendar size={16} className="text-primary" />
                 {getDateLabel(groupedSessions[dateKey][0])}
               </h2>
 
@@ -67,11 +71,11 @@ export function History() {
                 {groupedSessions[dateKey].map(session => (
                   <div
                     key={session.id}
-                    className="bg-slate-800 rounded-xl p-4 border border-slate-700 hover:border-slate-600 transition-colors"
+                    className="bg-navy/80 backdrop-blur-sm rounded-xl p-4 border border-slate-700/50 hover:border-primary/50 transition-all shadow-lg"
                   >
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
-                        <div className="flex items-center gap-3 mb-3">
+                        <div className="flex items-center gap-3 mb-2">
                           <Clock className="text-primary" size={20} />
                           <div>
                             <p className="text-white font-medium">
@@ -96,7 +100,7 @@ export function History() {
                       {session.departureTime && (
                         <button
                           onClick={() => handleDelete(session.id)}
-                          className="p-2 text-slate-400 hover:text-danger transition-colors"
+                          className="p-2 text-slate-400 hover:text-danger transition-colors rounded-lg hover:bg-slate-800"
                           aria-label="Supprimer"
                         >
                           <Trash2 size={20} />
