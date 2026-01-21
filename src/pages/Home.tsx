@@ -31,19 +31,19 @@ export function Home() {
 
   // Format time as HH:MM:SS
   const formatClock = (date: Date) => {
-    return date.toLocaleTimeString('fr-FR', {
+    return date.toLocaleTimeString('en-US', {
       hour: '2-digit',
       minute: '2-digit',
       second: '2-digit'
     });
   };
 
-  // Format date as "Jour DD Mois"
+  // Format date as "Day DD Month"
   const formatFullDate = (date: Date) => {
-    return date.toLocaleDateString('fr-FR', {
+    return date.toLocaleDateString('en-US', {
       weekday: 'long',
-      day: 'numeric',
-      month: 'long'
+      month: 'long',
+      day: 'numeric'
     });
   };
 
@@ -82,14 +82,14 @@ export function Home() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>
-                <span className="text-sm text-slate-300">Session en cours</span>
+                <span className="text-sm text-slate-300">Active Session</span>
               </div>
               <div className="text-right">
                 <div className="text-2xl font-mono font-bold text-white">
                   {formatElapsed(elapsedTime)}
                 </div>
                 <div className="text-xs text-slate-400">
-                  Départ : {currentSession.arrivalTime.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}
+                  Started: {currentSession.arrivalTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}
                 </div>
               </div>
             </div>
@@ -125,10 +125,10 @@ export function Home() {
                   strokeWidth={1.5}
                 />
                 <span className="text-xl font-bold text-white tracking-wide">
-                  {isClocked ? 'POINTER' : 'POINTER'}
+                  {isClocked ? 'CLOCK' : 'CLOCK'}
                 </span>
                 <span className="text-xl font-bold text-white tracking-wide">
-                  {isClocked ? 'SORTIE' : 'ARRIVÉE'}
+                  {isClocked ? 'OUT' : 'IN'}
                 </span>
               </div>
             </div>
@@ -147,14 +147,14 @@ export function Home() {
             className="w-full py-4 bg-secondary/90 hover:bg-secondary text-white rounded-2xl font-medium text-sm flex items-center justify-center gap-2 transition-all shadow-lg"
           >
             <MapPin size={20} />
-            Configurer le lieu de travail
+            Configure Work Location
           </button>
 
           <button
             className="w-full py-4 bg-navy/80 hover:bg-navy text-slate-300 rounded-2xl font-medium text-sm flex items-center justify-center gap-2 transition-all border border-slate-700"
           >
             <AlertTriangle size={20} />
-            Hors zone de travail
+            Outside Work Zone
           </button>
         </div>
       </div>

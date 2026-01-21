@@ -9,15 +9,15 @@ export function generateMessage(session: Session, userName: string): string {
   const departure = session.departureTime ? formatTime(session.departureTime) : 'N/A';
   const duration = session.duration ? formatDuration(session.duration) : 'N/A';
 
-  const name = userName || 'Utilisateur';
+  const name = userName || 'User';
 
-  return `${name} - Session terminée
+  return `${name} - Work Session Completed
 
-Durée : ${duration}
-Arrivée : ${arrival}
-Départ : ${departure}
+Duration: ${duration}
+Clock In: ${arrival}
+Clock Out: ${departure}
 
-Pointeuse Digitale`;
+Nanny Hours Tracker`;
 }
 
 /**
@@ -25,7 +25,7 @@ Pointeuse Digitale`;
  */
 export function sendSMS(phone: string, message: string): void {
   if (!phone) {
-    alert('Numéro de téléphone non configuré');
+    alert('Phone number not configured');
     return;
   }
 
@@ -40,7 +40,7 @@ export function sendSMS(phone: string, message: string): void {
  */
 export function sendEmail(email: string, subject: string, message: string): void {
   if (!email) {
-    alert('Email non configuré');
+    alert('Email not configured');
     return;
   }
 
