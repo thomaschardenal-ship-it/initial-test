@@ -1,5 +1,5 @@
 import { useLiveQuery } from 'dexie-react-hooks';
-import { Calendar, Clock, TrendingUp, Award } from 'lucide-react';
+import { Calendar, Clock, TrendingUp, Award, BarChart3 } from 'lucide-react';
 import { getSessionsByDateRange } from '../services/database';
 import { getWeekStart, getMonthStart, getDateString, calculateTotalHours, calculateTotalMinutes, formatDuration } from '../utils/timeUtils';
 import { StatCard } from '../components/StatCard';
@@ -41,14 +41,18 @@ export function Statistics() {
   const weekProgress = Math.min((weekHours / weeklyGoal) * 100, 100);
 
   return (
-    <div className="flex-1 overflow-y-auto p-6 pb-24">
+    <div className="flex-1 overflow-y-auto p-6 pb-24 pt-8">
       <div className="max-w-2xl mx-auto">
-        <h1 className="text-3xl font-bold text-white mb-6">Statistiques</h1>
+        {/* Header */}
+        <div className="flex items-center gap-3 mb-6">
+          <BarChart3 className="text-primary w-8 h-8" />
+          <h1 className="text-2xl font-bold text-white">Statistiques</h1>
+        </div>
 
         {/* Week Stats */}
         <div className="mb-8">
-          <h2 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-            <Calendar size={24} className="text-primary" />
+          <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+            <Calendar size={20} className="text-primary" />
             Cette semaine
           </h2>
 
@@ -69,16 +73,16 @@ export function Statistics() {
           </div>
 
           {/* Weekly goal progress */}
-          <div className="bg-slate-800 rounded-2xl p-6 border border-slate-700">
+          <div className="bg-navy/80 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50 shadow-lg">
             <div className="flex items-center justify-between mb-3">
-              <span className="text-sm font-medium text-slate-400">Objectif hebdomadaire</span>
+              <span className="text-sm font-medium text-slate-300">Objectif hebdomadaire</span>
               <span className="text-sm font-bold text-white">
                 {weekHours.toFixed(1)}h / {weeklyGoal}h
               </span>
             </div>
             <div className="w-full bg-slate-700 rounded-full h-3 overflow-hidden">
               <div
-                className="bg-gradient-to-r from-primary to-emerald-400 h-full transition-all duration-500 rounded-full"
+                className="bg-gradient-to-r from-primary to-cyan-400 h-full transition-all duration-500 rounded-full"
                 style={{ width: `${weekProgress}%` }}
               />
             </div>
@@ -90,8 +94,8 @@ export function Statistics() {
 
         {/* Month Stats */}
         <div className="mb-8">
-          <h2 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-            <Award size={24} className="text-emerald-400" />
+          <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+            <Award size={20} className="text-secondary" />
             Ce mois
           </h2>
 
@@ -101,7 +105,7 @@ export function Statistics() {
               value={formatDuration(monthMinutes)}
               subtitle={`${monthSessionCount} session${monthSessionCount > 1 ? 's' : ''}`}
               icon={Clock}
-              color="text-emerald-400"
+              color="text-secondary"
             />
 
             <StatCard
@@ -109,14 +113,14 @@ export function Statistics() {
               value={formatDuration(avgMonthHours * 60)}
               subtitle={`${monthDaysWorked} jour${monthDaysWorked > 1 ? 's' : ''} travaillé${monthDaysWorked > 1 ? 's' : ''}`}
               icon={TrendingUp}
-              color="text-emerald-400"
+              color="text-secondary"
             />
           </div>
         </div>
 
         {/* Info message if no data */}
         {weekSessionCount === 0 && (
-          <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700 text-center">
+          <div className="bg-navy/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50 text-center">
             <p className="text-slate-400">
               Commencez à pointer pour voir vos statistiques
             </p>
