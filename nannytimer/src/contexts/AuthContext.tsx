@@ -25,7 +25,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true)
   const supabase = createClient()
 
-  const fetchProfile = async (userId: string) => {
+  const fetchProfile = async (userId: string, userEmail?: string, userMetadata?: { full_name?: string; role?: string }) => {
     const { data, error } = await supabase
       .from('profiles')
       .select('*')
@@ -34,6 +34,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     if (!error && data) {
       setProfile(data as Profile)
+    } else if (error && error.code === 'PGRST116' && userEmail) {
+      // Profile doesn't exist, create it
+      const { data: newProfile, error: insertError } = await supabase
+        .from('profiles')
+        .insert({
+          id: userId,
+          email: userEmail,
+          full_name: userMetadata?.full_name || 'Utilisateur',
+          role: userMetadata?.role || 'employer'
+        })
+        .select()
+        .single()
+
+      if (!insertError && newProfile) {
+        setProfile(newProfile as Profile)
+      }
     }
   }
 
@@ -50,7 +66,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setUser(session?.user ?? null)
 
       if (session?.user) {
-        await fetchProfile(session.user.id)
+        await fetchProfile(
+          session.user.id,
+          session.user.email,
+          session.user.user_metadata as { full_name?: string; role?: string }
+        )
       }
       setLoading(false)
     }
@@ -63,7 +83,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setUser(session?.user ?? null)
 
         if (session?.user) {
-          await fetchProfile(session.user.id)
+          await fetchProfile(
+            session.user.id,
+            session.user.email,
+            session.user.user_metadata as { full_name?: string; role?: string }
+          )
         } else {
           setProfile(null)
         }
