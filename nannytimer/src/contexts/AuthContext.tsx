@@ -88,25 +88,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     fullName: string,
     role: 'employer' | 'nanny'
   ) => {
-    const { data, error } = await supabase.auth.signUp({
+    // Pass metadata to signUp - the trigger will use this to create the profile
+    const { error } = await supabase.auth.signUp({
       email,
-      password
+      password,
+      options: {
+        data: {
+          full_name: fullName,
+          role: role
+        }
+      }
     })
 
-    if (error) return { error: error as Error | null }
-
-    if (data.user) {
-      const { error: profileError } = await supabase.from('profiles').insert({
-        id: data.user.id,
-        email,
-        full_name: fullName,
-        role
-      })
-
-      if (profileError) return { error: profileError as Error | null }
-    }
-
-    return { error: null }
+    return { error: error as Error | null }
   }
 
   const signOut = async () => {
